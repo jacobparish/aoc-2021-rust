@@ -13,7 +13,7 @@ def part_a() -> int:
         elif y1 == y2:
             for i in range(min(x1, x2), max(x1, x2) + 1):
                 grid[i][y1] += 1
-    return sum(grid[i][j] > 1 for i in range(1000) for j in range(1000))
+    return np.sum(grid > 1)
 
 
 def part_b() -> int:
@@ -34,8 +34,7 @@ def part_b() -> int:
                 range(y1, y2 + stepy, stepy),
             ):
                 grid[i][j] += 1
-
-    return sum(grid[i][j] > 1 for i in range(1000) for j in range(1000))
+    return np.sum(grid > 1)
 
 
 if __name__ == "__main__":
