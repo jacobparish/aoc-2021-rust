@@ -1,17 +1,12 @@
 import numpy as np
+from parse import parse
 from aocd import lines, submit
 
 
 def part_a() -> int:
     grid = np.zeros((1000, 1000), dtype=int)
     for line in lines:
-        [first, last] = line.split(" -> ")
-        [x1, y1] = first.split(",")
-        [x2, y2] = last.split(",")
-        x1 = int(x1)
-        x2 = int(x2)
-        y1 = int(y1)
-        y2 = int(y2)
+        [x1, y1, x2, y2] = parse("{:d},{:d} -> {:d},{:d}", line)
         if x1 == x2:
             for i in range(min(y1, y2), max(y1, y2) + 1):
                 grid[x1][i] += 1
@@ -24,13 +19,7 @@ def part_a() -> int:
 def part_b() -> int:
     grid = np.zeros((1000, 1000), dtype=int)
     for line in lines:
-        [first, last] = line.split(" -> ")
-        [x1, y1] = first.split(",")
-        [x2, y2] = last.split(",")
-        x1 = int(x1)
-        x2 = int(x2)
-        y1 = int(y1)
-        y2 = int(y2)
+        [x1, y1, x2, y2] = parse("{:d},{:d} -> {:d},{:d}", line)
         if x1 == x2:
             for i in range(min(y1, y2), max(y1, y2) + 1):
                 grid[x1][i] += 1
