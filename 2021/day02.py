@@ -1,17 +1,18 @@
+from parse import parse
 from aocd import lines, submit
 
 
 def part_a() -> int:
     x = 0
     y = 0
-    for l in lines:
-        [dir, n] = l.split(" ")
+    for line in lines:
+        [dir, n] = parse("{} {:d}", line)
         if dir == "forward":
-            x += int(n)
+            x += n
         elif dir == "up":
-            y -= int(n)
+            y -= n
         elif dir == "down":
-            y += int(n)
+            y += n
     return x * y
 
 
@@ -19,15 +20,15 @@ def part_b() -> int:
     x = 0
     y = 0
     aim = 0
-    for l in lines:
-        [dir, n] = l.split(" ")
+    for line in lines:
+        [dir, n] = parse("{} {:d}", line)
         if dir == "forward":
-            x += int(n)
-            y += aim * int(n)
+            x += n
+            y += aim * n
         elif dir == "up":
-            aim -= int(n)
+            aim -= n
         elif dir == "down":
-            aim += int(n)
+            aim += n
     return x * y
 
 
