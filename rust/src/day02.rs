@@ -1,6 +1,3 @@
-use std::iter::zip;
-use std::convert::TryInto;
-
 struct Instr {
     dir: String,
     x: i32,
@@ -14,7 +11,7 @@ impl From<&str> for Instr {
 }
 
 pub fn part_a(input: &str) -> i32 {
-    let instrs: Vec<Instr> = input.split_terminator("\n").map(Instr::from).collect();
+    let instrs: Vec<Instr> = input.lines().map(Instr::from).collect();
     struct SubState {
         h: i32, // horizontal position
         d: i32, // depth
@@ -31,7 +28,7 @@ pub fn part_a(input: &str) -> i32 {
 }
 
 pub fn part_b(input: &str) -> i32 {
-    let instrs: Vec<Instr> = input.split_terminator("\n").map(Instr::from).collect();
+    let instrs: Vec<Instr> = input.lines().map(Instr::from).collect();
     struct SubState {
         h: i32, // horizontal position
         d: i32, // depth
