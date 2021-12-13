@@ -25,7 +25,7 @@ pub fn part_a(input: &str) -> i64 {
     let calls = lines[0].split(",").map(|s| s.parse().unwrap());
     let mut boards = parse_boards(lines[2..].to_vec());
     for c in calls {
-        for mut b in boards.iter_mut() {
+        for b in boards.iter_mut() {
             mark_board(b, c);
             let win = (0..5)
                 .any(|i| (0..5).all(|j| b[5 * i + j] == -1) || (0..5).all(|j| b[5 * j + i] == -1));
@@ -45,7 +45,7 @@ pub fn part_b(input: &str) -> i64 {
     let mut boards = parse_boards(lines[2..].to_vec());
     let mut wins = vec![false; boards.len()];
     for c in calls {
-        for (n, mut b) in boards.iter_mut().enumerate() {
+        for (n, b) in boards.iter_mut().enumerate() {
             mark_board(b, c);
             wins[n] = (0..5)
                 .any(|i| (0..5).all(|j| b[5 * i + j] == -1) || (0..5).all(|j| b[5 * j + i] == -1));

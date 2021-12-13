@@ -11,7 +11,7 @@ fn count_fish(input: &str, days: i64) -> i64 {
             *fish.entry(x).or_insert(0) += 1;
             fish
         });
-    for d in 0..days {
+    for _ in 0..days {
         let timed_out_fish = *fish.entry(0).or_insert(0);
         for i in 0..8 {
             *fish.entry(i).or_insert(0) = *fish.entry(i + 1).or_insert(0);
