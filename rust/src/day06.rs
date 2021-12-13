@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-fn count_fish(input: &str, days: i32) -> i64 {
+fn count_fish(input: &str, days: i64) -> i64 {
     let mut fish: HashMap<i8, i64> = input
         .lines()
         .next()

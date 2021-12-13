@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::convert::TryInto;
 use std::iter::{zip, Iterator};
 
-fn signed_range_inclusive(a: i32, b: i32) -> Box<dyn Iterator<Item = i32>> {
+fn signed_range_inclusive(a: i64, b: i64) -> Box<dyn Iterator<Item = i64>> {
     if a <= b {
         Box::new(a..b + 1)
     } else {
@@ -10,10 +10,10 @@ fn signed_range_inclusive(a: i32, b: i32) -> Box<dyn Iterator<Item = i32>> {
     }
 }
 
-pub fn part_a(input: &str) -> i32 {
+pub fn part_a(input: &str) -> i64 {
     let final_grid = input
         .lines()
-        .map(|s| scan_fmt!(s, "{d},{d} -> {d},{d}", i32, i32, i32, i32).unwrap())
+        .map(|s| scan_fmt!(s, "{d},{d} -> {d},{d}", i64, i64, i64, i64).unwrap())
         .fold(HashMap::new(), |mut grid, (x1, y1, x2, y2)| {
             if x1 == x2 {
                 for y in signed_range_inclusive(y1, y2) {
@@ -34,10 +34,10 @@ pub fn part_a(input: &str) -> i32 {
         .unwrap()
 }
 
-pub fn part_b(input: &str) -> i32 {
+pub fn part_b(input: &str) -> i64 {
     let final_grid = input
         .lines()
-        .map(|s| scan_fmt!(s, "{d},{d} -> {d},{d}", i32, i32, i32, i32).unwrap())
+        .map(|s| scan_fmt!(s, "{d},{d} -> {d},{d}", i64, i64, i64, i64).unwrap())
         .fold(HashMap::new(), |mut grid, (x1, y1, x2, y2)| {
             if x1 == x2 {
                 for y in signed_range_inclusive(y1, y2) {

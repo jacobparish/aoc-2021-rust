@@ -1,4 +1,4 @@
-fn parse_boards(lines: Vec<&str>) -> Vec<Vec<i32>> {
+fn parse_boards(lines: Vec<&str>) -> Vec<Vec<i64>> {
     lines
         .chunks(6)
         .map(|chunk| {
@@ -11,7 +11,7 @@ fn parse_boards(lines: Vec<&str>) -> Vec<Vec<i32>> {
         .collect()
 }
 
-fn mark_board(b: &mut Vec<i32>, c: i32) {
+fn mark_board(b: &mut Vec<i64>, c: i64) {
     for i in 0..25 {
         if b[i] == c {
             // use -1 to represent marked position
@@ -20,7 +20,7 @@ fn mark_board(b: &mut Vec<i32>, c: i32) {
     }
 }
 
-pub fn part_a(input: &str) -> i32 {
+pub fn part_a(input: &str) -> i64 {
     let lines: Vec<&str> = input.lines().collect();
     let calls = lines[0].split(",").map(|s| s.parse().unwrap());
     let mut boards = parse_boards(lines[2..].to_vec());
@@ -30,7 +30,7 @@ pub fn part_a(input: &str) -> i32 {
             let win = (0..5)
                 .any(|i| (0..5).all(|j| b[5 * i + j] == -1) || (0..5).all(|j| b[5 * j + i] == -1));
             if win {
-                let total: i32 = b.iter().filter(|x| x > &&0).sum();
+                let total: i64 = b.iter().filter(|x| x > &&0).sum();
                 return c * total;
             }
         }
@@ -39,7 +39,7 @@ pub fn part_a(input: &str) -> i32 {
     panic!("none of the boards won");
 }
 
-pub fn part_b(input: &str) -> i32 {
+pub fn part_b(input: &str) -> i64 {
     let lines: Vec<&str> = input.lines().collect();
     let calls = lines[0].split(",").map(|s| s.parse().unwrap());
     let mut boards = parse_boards(lines[2..].to_vec());
@@ -50,7 +50,7 @@ pub fn part_b(input: &str) -> i32 {
             wins[n] = (0..5)
                 .any(|i| (0..5).all(|j| b[5 * i + j] == -1) || (0..5).all(|j| b[5 * j + i] == -1));
             if wins.iter().cloned().all(|w| w) {
-                let total: i32 = b.iter().filter(|x| x > &&0).sum();
+                let total: i64 = b.iter().filter(|x| x > &&0).sum();
                 return c * total;
             }
         }

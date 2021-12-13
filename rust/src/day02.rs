@@ -1,20 +1,20 @@
 struct Instr {
     dir: String,
-    x: i32,
+    x: i64,
 }
 
 impl From<&str> for Instr {
     fn from(s: &str) -> Instr {
-        let (dir, x) = scan_fmt!(s, "{} {d}", String, i32).unwrap();
+        let (dir, x) = scan_fmt!(s, "{} {d}", String, i64).unwrap();
         Instr { dir, x }
     }
 }
 
-pub fn part_a(input: &str) -> i32 {
+pub fn part_a(input: &str) -> i64 {
     let instrs: Vec<Instr> = input.lines().map(Instr::from).collect();
     struct SubState {
-        h: i32, // horizontal position
-        d: i32, // depth
+        h: i64, // horizontal position
+        d: i64, // depth
     }
     let final_state = instrs.iter().fold(
         SubState { h: 0, d: 0 },
@@ -28,12 +28,12 @@ pub fn part_a(input: &str) -> i32 {
     final_state.h * final_state.d
 }
 
-pub fn part_b(input: &str) -> i32 {
+pub fn part_b(input: &str) -> i64 {
     let instrs: Vec<Instr> = input.lines().map(Instr::from).collect();
     struct SubState {
-        h: i32, // horizontal position
-        d: i32, // depth
-        aim: i32,
+        h: i64, // horizontal position
+        d: i64, // depth
+        aim: i64,
     }
     let final_state = instrs.iter().fold(
         SubState { h: 0, d: 0, aim: 0 },
