@@ -1,8 +1,6 @@
-use std::cmp::{max, min};
 use std::collections::HashMap;
 use std::convert::TryInto;
-use std::iter::zip;
-use std::iter::Iterator;
+use std::iter::{zip, Iterator};
 
 fn signed_range_inclusive(a: i32, b: i32) -> Box<dyn Iterator<Item = i32>> {
     if a <= b {
