@@ -16,6 +16,7 @@ mod day05;
 mod day06;
 mod day07;
 mod day08;
+mod day13;
 mod day21;
 
 // todo: figure out how to let return type of functions be arbitrary integer types
@@ -30,6 +31,7 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         6 => (day06::part_a, day06::part_b),
         7 => (day07::part_a, day07::part_b),
         8 => (day08::part_a, day08::part_b),
+        13 => (day13::part_a, day13::part_b),
         21 => (day21::part_a, day21::part_b),
         _ => panic!("day not found"),
     }
