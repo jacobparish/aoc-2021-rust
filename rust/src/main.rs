@@ -1,4 +1,5 @@
 #![feature(iter_zip)]
+#![feature(destructuring_assignment)]
 
 #[macro_use]
 extern crate scan_fmt;
@@ -14,6 +15,7 @@ mod day05;
 mod day06;
 mod day07;
 mod day08;
+mod day21;
 
 // todo: figure out how to let return type of functions be arbitrary integer types
 // so we don't have to use i64 for everything
@@ -27,15 +29,16 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         6 => (day06::part_a, day06::part_b),
         7 => (day07::part_a, day07::part_b),
         8 => (day08::part_a, day08::part_b),
+        21 => (day21::part_a, day21::part_b),
         _ => panic!("day not found"),
     }
 }
 
 fn main() {
-    let path = Path::new("../inputs/day08.txt");
+    let path = Path::new("../inputs/day21.txt");
     let input = fs::read_to_string(path).expect("failed to read input file");
 
-    let (part_a, part_b) = lookup_day(8);
+    let (part_a, part_b) = lookup_day(21);
     println!("part a: {:}", part_a(&input));
     println!("part b: {:}", part_b(&input));
 }
