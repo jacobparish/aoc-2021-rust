@@ -4,8 +4,9 @@
 #[macro_use]
 extern crate scan_fmt;
 
+use std::env;
 use std::fs;
-use std::path::Path;
+use std::path;
 
 mod day01;
 mod day02;
@@ -35,10 +36,15 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
 }
 
 fn main() {
-    let path = Path::new("../inputs/day21.txt");
+    let day: i8 = env::args()
+        .nth(1)
+        .expect("day is required")
+        .parse()
+        .expect("day must be an integer");
+    let pathstr = format!("../inputs/day{:02}.txt", day);
+    let path = path::Path::new(&pathstr);
     let input = fs::read_to_string(path).expect("failed to read input file");
-
-    let (part_a, part_b) = lookup_day(21);
+    let (part_a, part_b) = lookup_day(day);
     println!("part a: {:}", part_a(&input));
     println!("part b: {:}", part_b(&input));
 }
