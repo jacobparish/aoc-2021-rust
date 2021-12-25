@@ -17,6 +17,7 @@ mod day06;
 mod day07;
 mod day08;
 mod day09;
+mod day10;
 mod day11;
 mod day13;
 mod day21;
@@ -34,6 +35,7 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         7 => (day07::part_a, day07::part_b),
         8 => (day08::part_a, day08::part_b),
         9 => (day09::part_a, day09::part_b),
+        10 => (day10::part_a, day10::part_b),
         11 => (day11::part_a, day11::part_b),
         13 => (day13::part_a, day13::part_b),
         21 => (day21::part_a, day21::part_b),
