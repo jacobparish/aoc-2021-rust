@@ -22,6 +22,8 @@ mod day11;
 mod day13;
 mod day17;
 mod day21;
+mod day25;
+mod utils;
 
 // todo: figure out how to let return type of functions be arbitrary integer types
 // so we don't have to use i64 for everything
@@ -41,6 +43,7 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         13 => (day13::part_a, day13::part_b),
         17 => (day17::part_a, day17::part_b),
         21 => (day21::part_a, day21::part_b),
+        25 => (day25::part_a, day25::part_b),
         _ => panic!("day not found"),
     }
 }
