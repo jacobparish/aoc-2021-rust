@@ -1,5 +1,20 @@
 use std::convert::TryInto;
 
+pub fn parse_grid<const WIDTH: usize, const HEIGHT: usize>(s: &str) -> [[u8; WIDTH]; HEIGHT] {
+    s.lines()
+        .map(|line| {
+            line.as_bytes()
+                .iter()
+                .map(|c| (c - b'0') as u8)
+                .collect::<Vec<u8>>()
+                .try_into()
+                .unwrap()
+        })
+        .collect::<Vec<[u8; WIDTH]>>()
+        .try_into()
+        .unwrap()
+}
+
 pub fn parse_grid_and_pad<const WIDTH: usize, const HEIGHT: usize>(
     s: &str,
     pad_with: u8,
