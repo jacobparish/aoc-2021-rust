@@ -3,8 +3,7 @@ use std::convert::TryInto;
 pub fn parse_grid<const WIDTH: usize, const HEIGHT: usize>(s: &str) -> [[u8; WIDTH]; HEIGHT] {
     s.lines()
         .map(|line| {
-            line.as_bytes()
-                .iter()
+            line.bytes()
                 .map(|c| (c - b'0') as u8)
                 .collect::<Vec<u8>>()
                 .try_into()
@@ -22,7 +21,7 @@ pub fn parse_grid_and_pad<const WIDTH: usize, const HEIGHT: usize>(
     let mut rows_vec: Vec<[u8; WIDTH]> = s
         .lines()
         .map(|line| {
-            let mut vec: Vec<u8> = line.as_bytes().iter().map(|c| c - b'0').collect();
+            let mut vec: Vec<u8> = line.bytes().map(|c| c - b'0').collect();
             vec.insert(0, pad_with);
             vec.push(pad_with);
             vec.try_into().unwrap()
