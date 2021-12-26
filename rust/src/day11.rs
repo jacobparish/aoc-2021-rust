@@ -1,5 +1,3 @@
-use std::str;
-
 use crate::utils::parse_grid_and_pad;
 
 fn simulate_step<const WIDTH: usize, const HEIGHT: usize>(grid: &mut [[u8; WIDTH]; HEIGHT]) -> i64 {

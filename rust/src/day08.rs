@@ -2,7 +2,6 @@ use itertools::Itertools;
 use std::collections::HashMap;
 use std::convert::TryFrom;
 use std::iter::zip;
-use std::str;
 
 pub fn part_a(input: &str) -> i64 {
     input

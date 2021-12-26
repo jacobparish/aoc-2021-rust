@@ -1,5 +1,3 @@
-use std::str;
-
 fn match_char(c: u8) -> u8 {
     match c {
         b')' => b'(',

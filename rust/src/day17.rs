@@ -1,5 +1,3 @@
-use std::str;
-
 fn parse_target_area(input: &str) -> (i64, i64, i64, i64) {
     scan_fmt!(
         input,

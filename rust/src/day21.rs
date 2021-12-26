@@ -1,6 +1,5 @@
 use itertools::Itertools;
 use std::cmp::max;
-use std::str;
 
 pub fn part_a(input: &str) -> i64 {
     let (mut p1, mut p2) = input

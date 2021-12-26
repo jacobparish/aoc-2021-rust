@@ -4,14 +4,14 @@ use std::iter::{zip, Iterator};
 
 fn signed_range_inclusive(a: i64, b: i64) -> Box<dyn Iterator<Item = i64>> {
     if a <= b {
-        Box::new(a..b + 1)
+        Box::new(a..=b)
     } else {
-        Box::new((b..a + 1).rev())
+        Box::new((b..=a).rev())
     }
 }
 
 pub fn part_a(input: &str) -> i64 {
-    let final_grid = input
+    input
         .lines()
         .map(|s| scan_fmt!(s, "{d},{d} -> {d},{d}", i64, i64, i64, i64).unwrap())
         .fold(HashMap::new(), |mut grid, (x1, y1, x2, y2)| {
@@ -25,17 +25,16 @@ pub fn part_a(input: &str) -> i64 {
                 }
             }
             grid
-        });
-    final_grid
+        })
         .values()
-        .filter(|x| x > &&1)
+        .filter(|x| **x > 1)
         .count()
         .try_into()
         .unwrap()
 }
 
 pub fn part_b(input: &str) -> i64 {
-    let final_grid = input
+    input
         .lines()
         .map(|s| scan_fmt!(s, "{d},{d} -> {d},{d}", i64, i64, i64, i64).unwrap())
         .fold(HashMap::new(), |mut grid, (x1, y1, x2, y2)| {
@@ -56,10 +55,9 @@ pub fn part_b(input: &str) -> i64 {
                 }
             }
             grid
-        });
-    final_grid
+        })
         .values()
-        .filter(|x| x > &&1)
+        .filter(|x| **x > 1)
         .count()
         .try_into()
         .unwrap()

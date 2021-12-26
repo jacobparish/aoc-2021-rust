@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 use std::iter::zip;
-use std::str;
 
 fn parse_input(input: &str) -> (&str, Vec<(u8, u8, u8)>) {
     let mut lines = input.lines();

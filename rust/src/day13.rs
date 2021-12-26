@@ -1,7 +1,6 @@
 use std::cmp::min;
 use std::collections::HashSet;
 use std::convert::TryInto;
-use std::str;
 
 pub fn part_a(input: &str) -> i64 {
     let mut lines = input.lines();

@@ -1,5 +1,4 @@
 use std::convert::TryInto;
-use std::str;
 
 const WIDTH: usize = 139;
 const HEIGHT: usize = 137;
