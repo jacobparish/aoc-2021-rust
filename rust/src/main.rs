@@ -1,12 +1,10 @@
-#![feature(iter_zip)]
-#![feature(destructuring_assignment)]
-
 #[macro_use]
 extern crate scan_fmt;
 
 use std::env;
 use std::fs;
 use std::path;
+use std::time;
 
 mod day01;
 mod day02;
@@ -21,6 +19,7 @@ mod day10;
 mod day11;
 mod day13;
 mod day14;
+mod day16;
 mod day17;
 mod day21;
 mod day25;
@@ -43,6 +42,7 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         11 => (day11::part_a, day11::part_b),
         13 => (day13::part_a, day13::part_b),
         14 => (day14::part_a, day14::part_b),
+        16 => (day16::part_a, day16::part_b),
         17 => (day17::part_a, day17::part_b),
         21 => (day21::part_a, day21::part_b),
         25 => (day25::part_a, day25::part_b),
@@ -60,6 +60,14 @@ fn main() {
     let path = path::Path::new(&pathstr);
     let input = fs::read_to_string(path).expect("failed to read input file");
     let (part_a, part_b) = lookup_day(day);
-    println!("part a: {:}", part_a(&input));
-    println!("part b: {:}", part_b(&input));
+
+    let a_start = time::Instant::now();
+    let a_result = part_a(&input);
+    let a_elapsed = a_start.elapsed();
+    println!("part a: {:}, {:?}", a_result, a_elapsed);
+
+    let b_start = time::Instant::now();
+    let b_result = part_b(&input);
+    let b_elapsed = b_start.elapsed();
+    println!("part b: {:}, {:?}", b_result, b_elapsed);
 }
