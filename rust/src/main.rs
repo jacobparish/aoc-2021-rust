@@ -22,6 +22,7 @@ mod day14;
 mod day16;
 mod day17;
 mod day21;
+mod day22;
 mod day25;
 mod utils;
 
@@ -45,6 +46,7 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         16 => (day16::part_a, day16::part_b),
         17 => (day17::part_a, day17::part_b),
         21 => (day21::part_a, day21::part_b),
+        22 => (day22::part_a, day22::part_b),
         25 => (day25::part_a, day25::part_b),
         _ => panic!("day not found"),
     }
