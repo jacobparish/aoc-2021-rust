@@ -30,7 +30,7 @@ struct Packet {
     data: PacketData,
 }
 
-fn parse_packet(mut bits: &[bool]) -> (Packet, usize) {
+fn parse_packet(bits: &[bool]) -> (Packet, usize) {
     let version = bit_vec_to_num(&bits[0..3]);
     let type_id = bit_vec_to_num(&bits[3..6]);
     let (data, n) = parse_packet_data(type_id, &bits[6..]);
@@ -62,7 +62,7 @@ fn parse_packet_data(type_id: usize, mut bits: &[bool]) -> (PacketData, usize) {
 
     let mut subpackets = Vec::new();
     if length_type_id {
-        let mut count_bits;
+        let count_bits;
         (count_bits, bits) = bits.split_at(11);
         let subpackets_count = bit_vec_to_num(count_bits);
         let mut subpackets_length = 0;
@@ -80,7 +80,7 @@ fn parse_packet_data(type_id: usize, mut bits: &[bool]) -> (PacketData, usize) {
             1 + 11 + subpackets_length,
         )
     } else {
-        let mut length_bits;
+        let length_bits;
         (length_bits, bits) = bits.split_at(15);
         let subpackets_length_expected = bit_vec_to_num(length_bits);
         let mut subpackets_length_actual = 0;

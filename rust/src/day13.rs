@@ -60,8 +60,8 @@ pub fn part_b(input: &str) -> i64 {
         points = points_after_fold;
     }
 
-    let xmax = points.iter().max_by_key(|(x, y)| x).unwrap().0;
-    let ymax = points.iter().max_by_key(|(x, y)| y).unwrap().1;
+    let xmax = points.iter().max_by_key(|(x, _)| x).unwrap().0;
+    let ymax = points.iter().max_by_key(|(_, y)| y).unwrap().1;
 
     for y in 0..=ymax {
         for x in 0..=xmax {

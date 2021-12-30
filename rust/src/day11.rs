@@ -48,7 +48,7 @@ pub fn part_a(input: &str) -> i64 {
 
     let mut num_flashes = 0;
 
-    for step in 0..100 {
+    for _ in 0..100 {
         num_flashes += simulate_step(&mut grid);
     }
 

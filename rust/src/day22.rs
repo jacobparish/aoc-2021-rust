@@ -1,4 +1,3 @@
-use itertools::Itertools;
 use scan_fmt::parse::ScanError;
 use std::cmp::{max, min};
 use std::convert::TryInto;

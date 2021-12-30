@@ -25,7 +25,7 @@ fn do_pair_insertion(polymer: &str, rules: Vec<(u8, u8, u8)>, steps: usize) -> H
     }
 
     // Do pair insertion for specified number of steps
-    for step in 0..steps {
+    for _ in 0..steps {
         let mut pair_counts_next = pair_counts.clone();
         for (c1, c2, ins) in rules.iter() {
             let num_matches = *pair_counts.entry((*c1, *c2)).or_default();
@@ -50,7 +50,7 @@ fn do_pair_insertion(polymer: &str, rules: Vec<(u8, u8, u8)>, steps: usize) -> H
     let clast = *polymer.as_bytes().last().unwrap();
     *elt_counts.entry(cfirst).or_insert(0) += 1;
     *elt_counts.entry(clast).or_insert(0) += 1;
-    for mut count in elt_counts.values_mut() {
+    for count in elt_counts.values_mut() {
         *count /= 2;
     }
 

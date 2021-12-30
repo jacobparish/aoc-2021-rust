@@ -33,7 +33,7 @@ impl Add for SfNum {
     }
 }
 
-fn tree_pos_weight(depth: usize, mut tree_pos: usize) -> usize {
+fn tree_pos_weight(depth: usize, tree_pos: usize) -> usize {
     let mut weight = 1;
     for i in 0..depth {
         weight *= if (tree_pos & (1 << i)) == 0 { 3 } else { 2 };
