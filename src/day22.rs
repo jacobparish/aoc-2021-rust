@@ -1,4 +1,5 @@
 use scan_fmt::parse::ScanError;
+use scan_fmt::scan_fmt;
 use std::cmp::{max, min};
 use std::convert::TryInto;
 

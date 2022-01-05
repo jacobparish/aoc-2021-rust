@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 
 use crate::utils::parse_grid;
-use crate::utils::parse_grid_and_pad;
+use crate::utils::parse_grid_padded;
 
 pub fn part_a(input: &str) -> i64 {
-    let grid = parse_grid_and_pad::<102, 102>(input, 9);
+    let grid = parse_grid_padded::<100, 100, 1, 1, 1, 1>(input, 9);
 
     let mut total_risk: i64 = 0;
     for i in 1..=100 {

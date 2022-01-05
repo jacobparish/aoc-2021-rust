@@ -1,5 +1,5 @@
+use scan_fmt::scan_fmt;
 use std::collections::HashMap;
-use std::convert::TryInto;
 use std::iter::{zip, Iterator};
 
 fn signed_range_inclusive(a: i64, b: i64) -> Box<dyn Iterator<Item = i64>> {
@@ -26,11 +26,9 @@ pub fn part_a(input: &str) -> i64 {
             }
             grid
         })
-        .values()
-        .filter(|x| **x > 1)
-        .count()
-        .try_into()
-        .unwrap()
+        .into_values()
+        .filter(|&x| x > 1)
+        .count() as i64
 }
 
 pub fn part_b(input: &str) -> i64 {
@@ -56,9 +54,7 @@ pub fn part_b(input: &str) -> i64 {
             }
             grid
         })
-        .values()
-        .filter(|x| **x > 1)
-        .count()
-        .try_into()
-        .unwrap()
+        .into_values()
+        .filter(|&x| x > 1)
+        .count() as i64
 }

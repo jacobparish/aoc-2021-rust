@@ -1,4 +1,4 @@
-fn parse_boards(lines: Vec<&str>) -> Vec<Vec<i64>> {
+fn parse_boards(lines: &[&str]) -> Vec<Vec<i64>> {
     lines
         .chunks(6)
         .map(|chunk| {
@@ -23,14 +23,14 @@ fn mark_board(b: &mut Vec<i64>, c: i64) {
 pub fn part_a(input: &str) -> i64 {
     let lines: Vec<&str> = input.lines().collect();
     let calls = lines[0].split(",").map(|s| s.parse().unwrap());
-    let mut boards = parse_boards(lines[2..].to_vec());
+    let mut boards = parse_boards(&lines[2..]);
     for c in calls {
         for b in boards.iter_mut() {
             mark_board(b, c);
             let win = (0..5)
                 .any(|i| (0..5).all(|j| b[5 * i + j] == -1) || (0..5).all(|j| b[5 * j + i] == -1));
             if win {
-                let total: i64 = b.iter().filter(|x| x > &&0).sum();
+                let total: i64 = b.iter().filter(|&x| *x > 0).sum();
                 return c * total;
             }
         }
@@ -42,15 +42,15 @@ pub fn part_a(input: &str) -> i64 {
 pub fn part_b(input: &str) -> i64 {
     let lines: Vec<&str> = input.lines().collect();
     let calls = lines[0].split(",").map(|s| s.parse().unwrap());
-    let mut boards = parse_boards(lines[2..].to_vec());
+    let mut boards = parse_boards(&lines[2..]);
     let mut wins = vec![false; boards.len()];
     for c in calls {
         for (n, b) in boards.iter_mut().enumerate() {
             mark_board(b, c);
             wins[n] = (0..5)
                 .any(|i| (0..5).all(|j| b[5 * i + j] == -1) || (0..5).all(|j| b[5 * j + i] == -1));
-            if wins.iter().cloned().all(|w| w) {
-                let total: i64 = b.iter().filter(|x| x > &&0).sum();
+            if wins.iter().all(|&w| w) {
+                let total: i64 = b.iter().filter(|&x| *x > 0).sum();
                 return c * total;
             }
         }

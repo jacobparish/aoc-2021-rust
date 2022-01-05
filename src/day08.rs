@@ -1,26 +1,20 @@
 use itertools::Itertools;
-use std::collections::HashMap;
-use std::convert::TryFrom;
-use std::iter::zip;
 
 pub fn part_a(input: &str) -> i64 {
     input
         .lines()
         .map(|line| {
-            i64::try_from(
-                line.split(" | ")
-                    .nth(1)
-                    .unwrap()
-                    .split_whitespace()
-                    .filter(|s| match s.len() {
-                        2 | 3 | 4 | 7 => true,
-                        _ => false,
-                    })
-                    .count(),
-            )
-            .unwrap()
+            line.split(" | ")
+                .nth(1)
+                .unwrap()
+                .split_whitespace()
+                .filter(|s| match s.len() {
+                    2 | 3 | 4 | 7 => true,
+                    _ => false,
+                })
+                .count()
         })
-        .sum()
+        .sum::<usize>() as i64
 }
 
 fn parse_line(line: &str) -> (Vec<&str>, Vec<&str>) {
@@ -31,7 +25,7 @@ fn parse_line(line: &str) -> (Vec<&str>, Vec<&str>) {
 }
 
 pub fn part_b(input: &str) -> i64 {
-    let letters: Vec<u8> = (b'a'..b'g' + 1).collect();
+    let letters: Vec<u8> = (b'a'..=b'g').collect();
     let valid_combos = vec![
         "abcefg", "cf", "acdeg", "acdfg", "bcdf", "abdfg", "abdefg", "acf", "abcdefg", "abcdfg",
     ];
@@ -41,17 +35,18 @@ pub fn part_b(input: &str) -> i64 {
         .lines()
         .map(|line| {
             let (sig_patterns, out_values) = parse_line(line);
-            let decode = letters
+            let matching_perm = letters
                 .iter()
                 .permutations(7)
                 .find(|perm| {
-                    let map: HashMap<_, _> =
-                        zip(letters.iter().cloned(), perm.iter().cloned().cloned()).collect();
                     sig_patterns.iter().all(|sig| {
                         let decoded = String::from_utf8(
                             sig.bytes()
-                                .map(|c| map.get(&c).unwrap())
-                                .cloned()
+                                .map(|c| {
+                                    **perm
+                                        .get(letters.iter().position(|&d| d == c).unwrap())
+                                        .unwrap()
+                                })
                                 .sorted()
                                 .collect(),
                         )
@@ -61,20 +56,20 @@ pub fn part_b(input: &str) -> i64 {
                 })
                 .unwrap();
 
-            let map: HashMap<_, _> =
-                zip(letters.iter().cloned(), decode.iter().cloned().cloned()).collect();
-
             out_values.iter().fold(0, |acc, val| {
                 let decoded = String::from_utf8(
                     val.bytes()
-                        .map(|c| map.get(&c).unwrap())
-                        .cloned()
+                        .map(|c| {
+                            **matching_perm
+                                .get(letters.iter().position(|&d| d == c).unwrap())
+                                .unwrap()
+                        })
                         .sorted()
                         .collect(),
                 )
                 .unwrap();
-                10 * acc + valid_combos.iter().position(|s| **s == decoded).unwrap() as i64
+                10 * acc + valid_combos.iter().position(|&s| *s == decoded).unwrap()
             })
         })
-        .sum()
+        .sum::<usize>() as i64
 }

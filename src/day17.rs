@@ -1,3 +1,5 @@
+use scan_fmt::scan_fmt;
+
 fn parse_target_area(input: &str) -> (i64, i64, i64, i64) {
     scan_fmt!(
         input,
@@ -19,6 +21,7 @@ pub fn part_a(input: &str) -> i64 {
 }
 
 pub fn part_b(input: &str) -> i64 {
-    let (_xmin, _xmax, _ymin, _ymax) = parse_target_area(input);
-    0
+    let (xmin, xmax, ymin, ymax) = parse_target_area(input);
+    let num_vs = 0;
+    num_vs
 }

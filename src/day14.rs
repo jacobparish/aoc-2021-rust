@@ -1,3 +1,4 @@
+use scan_fmt::scan_fmt;
 use std::collections::HashMap;
 use std::iter::zip;
 

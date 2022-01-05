@@ -1,3 +1,5 @@
+use scan_fmt::scan_fmt;
+
 struct Instr {
     dir: String,
     x: i64,

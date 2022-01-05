@@ -1,4 +1,4 @@
-use crate::utils::parse_grid_and_pad;
+use crate::utils::parse_grid_padded;
 
 fn simulate_step<const WIDTH: usize, const HEIGHT: usize>(grid: &mut [[u8; WIDTH]; HEIGHT]) -> i64 {
     for i in 1..HEIGHT - 1 {
@@ -44,7 +44,7 @@ fn simulate_step<const WIDTH: usize, const HEIGHT: usize>(grid: &mut [[u8; WIDTH
 }
 
 pub fn part_a(input: &str) -> i64 {
-    let mut grid = parse_grid_and_pad::<12, 12>(input, 0);
+    let mut grid = parse_grid_padded::<10, 10, 1, 1, 1, 1>(input, 0);
 
     let mut num_flashes = 0;
 
@@ -56,7 +56,7 @@ pub fn part_a(input: &str) -> i64 {
 }
 
 pub fn part_b(input: &str) -> i64 {
-    let mut grid = parse_grid_and_pad::<12, 12>(input, 0);
+    let mut grid = parse_grid_padded::<10, 10, 1, 1, 1, 1>(input, 0);
 
     let mut step = 1;
 

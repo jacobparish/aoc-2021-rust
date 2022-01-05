@@ -1,5 +1,4 @@
-#[macro_use]
-extern crate scan_fmt;
+#![feature(generic_const_exprs)]
 
 use std::env;
 use std::fs;
@@ -17,14 +16,19 @@ mod day08;
 mod day09;
 mod day10;
 mod day11;
+mod day12;
 mod day13;
 mod day14;
+mod day15;
 mod day16;
 mod day17;
 mod day18;
+mod day19;
 mod day20;
 mod day21;
 mod day22;
+mod day23;
+mod day24;
 mod day25;
 mod utils;
 
@@ -43,14 +47,19 @@ fn lookup_day(day: i8) -> (fn(&str) -> i64, fn(&str) -> i64) {
         9 => (day09::part_a, day09::part_b),
         10 => (day10::part_a, day10::part_b),
         11 => (day11::part_a, day11::part_b),
+        12 => (day12::part_a, day12::part_b),
         13 => (day13::part_a, day13::part_b),
         14 => (day14::part_a, day14::part_b),
+        15 => (day15::part_a, day15::part_b),
         16 => (day16::part_a, day16::part_b),
         17 => (day17::part_a, day17::part_b),
         18 => (day18::part_a, day18::part_b),
+        19 => (day19::part_a, day19::part_b),
         20 => (day20::part_a, day20::part_b),
         21 => (day21::part_a, day21::part_b),
         22 => (day22::part_a, day22::part_b),
+        23 => (day23::part_a, day23::part_b),
+        24 => (day24::part_a, day24::part_b),
         25 => (day25::part_a, day25::part_b),
         _ => panic!("day not found"),
     }
@@ -62,7 +71,8 @@ fn main() {
         .expect("day is required")
         .parse()
         .expect("day must be an integer");
-    let pathstr = format!("../inputs/day{:02}.txt", day);
+
+    let pathstr = format!("./inputs/day{:02}.txt", day);
     let path = path::Path::new(&pathstr);
     let input = fs::read_to_string(path).expect("failed to read input file");
     let (part_a, part_b) = lookup_day(day);

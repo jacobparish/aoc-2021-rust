@@ -1,4 +1,5 @@
 use itertools::Itertools;
+use scan_fmt::scan_fmt;
 use std::cmp::max;
 
 pub fn part_a(input: &str) -> i64 {

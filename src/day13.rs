@@ -1,3 +1,4 @@
+use scan_fmt::scan_fmt;
 use std::cmp::min;
 use std::collections::HashSet;
 use std::convert::TryInto;
